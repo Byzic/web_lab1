@@ -67,7 +67,11 @@ span {
 .choice__values input:hover{ 
     box-shadow: 0 0 5px 3px #FFCB74 ;
 }
-.textfield{
+.choice__values input:invalid {
+    border: 5px dashed rgb(212, 123, 123);
+    box-shadow: 0 0 5px 3px rgb(212, 123, 123); ;
+  }
+#y-textfield{
     border: 2px solid #4F8A8B;
     width: 300px;
     height: 50px;
