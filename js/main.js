@@ -48,6 +48,21 @@ $('#main-form').on('submit', function(event) {
   event.preventDefault();
   if (!validateForm()) return;
   else{
-    $("form").submit();
+      let data=$(this).serialize() + '&timezone=' + new Date().getTimezoneOffset();
+      $.get(url('php/main.php'),
+          data,
+          function(data){
+              if (data.validate) {
+                  newRow = '<tr>';
+                  newRow += '<td>' + data.xval + '</td>';
+                  newRow += '<td>' + data.yval + '</td>';
+                  newRow += '<td>' + data.rval + '</td>';
+                  newRow += '<td>' + data.curtime + '</td>';
+                  newRow += '<td>' + data.exectime + '</td>';
+                  newRow += '<td>' + data.hitres + '</td>';
+                  $('#result-table').append(newRow);
+              }
+          },
+          'json');
   }
 })

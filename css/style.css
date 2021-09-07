@@ -1,19 +1,19 @@
 
 body{
-     padding: 30px;
-     font-family: cursive;
-     max-width: 1500px;
-     max-height: 1500px;
-     background: url(../img/pattern.png) repeat;
-     
+    padding: 30px;
+    font-family: cursive;
+    max-width: 1500px;
+    max-height: 1500px;
+    background: url(../img/pattern.png) repeat;
+
 }
 
 td{
     padding: 20px;
-    border: 5px solid #4F8A8B; 
+    border: 5px solid #4F8A8B;
 }
 table {
-     background-color: #F4F6FF;
+    background-color: #F4F6FF;
     border-radius: 2px;
 }
 .header__text {
@@ -21,39 +21,39 @@ table {
     font-size: 20px;
     color: black;
     padding: 10px 40px;
- }
- .scroll-container {
+}
+.scroll-container {
     width: 100%;
     overflow-y: scroll;
-  }
-  #result-table {
+}
+#result-table {
     width: 100%;
     text-align: center;
     border-collapse: collapse;
-  }
- .headerimg{
-     max-width: 200px;
-     max-height: 200px;
-     padding: 10px;
- }
- td.task__text {
+}
+.headerimg{
+    max-width: 200px;
+    max-height: 200px;
+    padding: 10px;
+}
+td.task__text {
     text-align: center;
     vertical-align: top;
- }
- td.task__text p{
-     margin: 80px 0 0 0 ;
- }
- .task__text p::after{
+}
+td.task__text p{
+    margin: 80px 0 0 0 ;
+}
+.task__text p::after{
     content: '';
     width: 100px;
     height: 10px;
     background-color: coral;
 }
- .graph {
+.graph {
     width: 200px;
     height: 200px;
     margin: 20px;
- }
+}
 span {
     color: #FFCB74;
     font-size: 20px;
@@ -61,16 +61,13 @@ span {
     margin: 0 40px 0 10px;
 }
 
-.choice__values input{ 
+.choice__values input{
     margin: 0 25px;
 }
-.choice__values input:hover{ 
+.choice__values input:hover{
     box-shadow: 0 0 5px 3px #FFCB74 ;
 }
-.choice__values input:invalid {
-    border: 5px dashed rgb(212, 123, 123);
-    box-shadow: 0 0 5px 3px rgb(212, 123, 123); ;
-  }
+
 #y-textfield{
     border: 2px solid #4F8A8B;
     width: 300px;
@@ -85,7 +82,7 @@ button{
     height:50px;
     font-family: cursive;
     font-size: medium;
-    border:  3px solid #FFCB74; 
+    border:  3px solid #FFCB74;
     border-radius: 2px;
     background-color: #d5daee;
     color:#264242 ;

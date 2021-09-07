@@ -1,104 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="../web_lab1/img/rabbit.png">
+    <link rel="icon" href="../web_lab1/img/icon.png">
     <link  rel="stylesheet" type="text/css" href="css/style.css">
     <title>Лабораторная №1</title>
     <meta charset="UTF-8">
 </head>
-<body> 
-    <table width=100%>
-        <!-- Header -->
-        
-            <tr class="header" >                
-                <td  width="20%">
-                    <img src="../web_lab1/img/я.jpg" alt="Картинка куда-то исчезла :( " class="headerimg">
+<body>
+<table width=100%>
+    <!-- Header -->
 
-                </td>
-                <td class="header__text" width="80%" >
-                    <p>Бызова Валерия Сергеевна</p>
-                    <p >группа 3212</p>
-                    <p>Вариант: 12004</p>
-                </td>
-            </tr>
-        
-        <tr class="task">                
-            <td class="task__img" width="20%">
-                <h2>Область попадания</h2>
-                <img src="../web_lab1/img/graph.jpg" alt="Область куда-то исчезла :( " class="graph">
+    <tr class="header" >
+        <td  width="20%">
+            <img src="../web_lab1/img/котик.jpg" alt="Картинка куда-то исчезла :( " class="headerimg">
 
-            </td>
-            <td class="task__text" width="80%">
-                <h2>Таблица запросов</h2>
-                <div class="scroll-container">
-                    <table id="result-table" width=100%>
-                      <tr class="table-header">
+        </td>
+        <td class="header__text" width="80%" >
+            <p>Бызова Валерия Сергеевна</p>
+            <p >группа 3212</p>
+            <p>Вариант: 12004</p>
+        </td>
+    </tr>
+
+    <tr class="task">
+        <td class="task__img" width="20%">
+            <h2>Область попадания</h2>
+            <img src="../web_lab1/img/graph.jpg" alt="Область куда-то исчезла :( " class="graph">
+
+        </td>
+        <td class="task__text" width="80%">
+            <h2>Таблица запросов</h2>
+            <div class="scroll-container">
+                <table id="result-table" width=100%>
+                    <tr class="table-header">
                         <th class="coords-col">X</th>
                         <th class="coords-col">Y</th>
                         <th class="coords-col">R</th>
                         <th class="time-col">Текущее время</th>
                         <th class="time-col">Время работы скрипта</th>
                         <th class="hitres-col">Результат</th>
-                      </tr>
-                    </table>
-                </div>
-                
+                    </tr>
+                </table>
+            </div>
+
+        </td>
+    </tr>
+    <form id="main-form" action="" >
+        <tr class="choice">
+            <td  colspan=2>
+                <p class="choice__values">
+                    <span class="value">Значение X</span>
+                    <input  type="radio" class="x-radio" name="x" value="-5">-5
+                    <input type="radio" class="x-radio" name="x" value="-4">-4
+                    <input type="radio" class="x-radio" name="x" value="-3">-3
+                    <input type="radio" class="x-radio" name="x" value="-2">-2
+                    <input type="radio" class="x-radio" name="x" value="-1">-1
+                    <input type="radio" class="x-radio" name="x" value="0">0
+                    <input type="radio" class="x-radio" name="x" value="1">1
+                    <input type="radio" class="x-radio" name="x" value="2">2
+                    <input type="radio" class="x-radio" name="x" value="3">3
+                </p>
             </td>
         </tr>
-        <form id="main-form" action="" >
-            <tr class="choice">  
-                <td  colspan=2>    
-                    <p class="choice__values">
-                        <span class="value">Значение X</span>
-                        <input  type="radio" class="x-radio" name="x" value="-5">-5
-                        <input type="radio" class="x-radio" name="x" value="-4">-4
-                        <input type="radio" class="x-radio" name="x" value="-3">-3
-                        <input type="radio" class="x-radio" name="x" value="-2">-2
-                        <input type="radio" class="x-radio" name="x" value="-1">-1
-                        <input type="radio" class="x-radio" name="x" value="0">0
-                        <input type="radio" class="x-radio" name="x" value="1">1
-                        <input type="radio" class="x-radio" name="x" value="2">2
-                        <input type="radio" class="x-radio" name="x" value="3">3
-                    </p>
-                </td>
-            </tr>
-            <tr class="choice">
-                <td colspan=2>
-                    <p class="choice__values">
-                        <span class="value">Значение Y</span>
-                        <input type="text" name="y" value="" id="y-textfield" >
-                    
-                        !значение должно быть в интервале (-5;5)
-                    </p>
-                </td>
-            </tr >
-            <tr class="choice">
-                <td colspan=2>
-                    <p class="choice__values">
-                        <span class="value">Значение R</span>
-                        <input class="r-checkbox" type="checkbox" name="1" value="yes">1
-                        <input class="r-checkbox" type="checkbox" name="2" value="yes">2
-                        <input class="r-checkbox" type="checkbox" name="3" value="yes">3
-                        <input class="r-checkbox" type="checkbox" name="4" value="yes">4
-                        <input class="r-checkbox" type="checkbox" name="5" value="yes">5
+        <tr class="choice">
+            <td colspan=2>
+                <p class="choice__values">
+                    <span class="value">Значение Y</span>
+                    <input type="text" name="y" value="" id="y-textfield" >
+
+                    !значение должно быть в интервале (-5;5)
                 </p>
-                    
-                </td>
-            </tr>
-            <tr class="choice__button">
-                <td  colspan=2>
-                    <button type="submit">Отправить</button>
-                </td>
-            </tr>
-            
-            
-        </form>
-        
-        
-        
-          
-    </table>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/main.js"></script>
+            </td>
+        </tr >
+        <tr class="choice">
+            <td colspan=2>
+                <p class="choice__values">
+                    <span class="value">Значение R</span>
+                    <input class="r-checkbox" type="checkbox" name="1" value="yes">1
+                    <input class="r-checkbox" type="checkbox" name="2" value="yes">2
+                    <input class="r-checkbox" type="checkbox" name="3" value="yes">3
+                    <input class="r-checkbox" type="checkbox" name="4" value="yes">4
+                    <input class="r-checkbox" type="checkbox" name="5" value="yes">5
+                </p>
+
+            </td>
+        </tr>
+        <tr class="choice__button">
+            <td  colspan=2>
+                <button type="submit">Отправить</button>
+            </td>
+        </tr>
+
+
+    </form>
+
+
+
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
