@@ -24,31 +24,33 @@ table {
 }
 .scroll-container {
     width: 100%;
-    overflow-y: scroll;
+    max-height: 500px;
+    overflow-x: auto;
 }
 #result-table {
     width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
+#result-table tb{
+    border: 1px solid #4F8A8B;
+}
+#result-table tr {
+    height: 2em;
+}
 .headerimg{
     max-width: 200px;
     max-height: 200px;
     padding: 10px;
 }
-td.task__text {
+td.task__result {
     text-align: center;
     vertical-align: top;
 }
-td.task__text p{
+td.task__result p{
     margin: 80px 0 0 0 ;
 }
-.task__text p::after{
-    content: '';
-    width: 100px;
-    height: 10px;
-    background-color: coral;
-}
+
 .graph {
     width: 200px;
     height: 200px;
@@ -95,5 +97,3 @@ button:hover{
 
 
 
-.value { }
-.choice-r { }

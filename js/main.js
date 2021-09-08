@@ -29,40 +29,63 @@ function validateY() {
   
 }
 function validateR() {
-  if ($('.r-checkbox').is(':checked')) {
+    let checkboxes=document.getElementsByName('r');
+    let counter=0;
+    if ($('.r-checkbox').is(':checked')) {
+        checkboxes.forEach(checkbox=> {
+            if (checkbox.checked){
+                counter++;
+            }
+        });
+        if (counter!=1){
+            alert("Необходимо выбрать только одно значение R");
+            return false;
+        }else{
+            return true;
+        }
 
-      return true;
-  } else {
-      alert("Значение R  не выбрано")
-      return false;
+        return true;
+    } else {
+        alert("Значение R  не выбрано")
+        return false;
   }
 }
 function validateForm() {
-  return validateX() & validateY() & validateR();
+    return validateX() & validateY() & validateR();
 }
 
 $('button').slideUp( 'slow');
 $('button').slideDown( 'slow');
 
 $('#main-form').on('submit', function(event) {
-  event.preventDefault();
-  if (!validateForm()) return;
-  else{
-      let data=$(this).serialize() + '&timezone=' + new Date().getTimezoneOffset();
-      $.get(url('php/main.php'),
-          data,
-          function(data){
-              if (data.validate) {
-                  newRow = '<tr>';
-                  newRow += '<td>' + data.xval + '</td>';
-                  newRow += '<td>' + data.yval + '</td>';
-                  newRow += '<td>' + data.rval + '</td>';
-                  newRow += '<td>' + data.curtime + '</td>';
-                  newRow += '<td>' + data.exectime + '</td>';
-                  newRow += '<td>' + data.hitres + '</td>';
-                  $('#result-table').append(newRow);
-              }
-          },
-          'json');
-  }
-})
+    event.preventDefault();
+    if (!validateForm()) {
+        return;
+    } else {
+
+        let data = $(this).serialize() + '&timezone=' + new Date().getTimezoneOffset();
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://se.ifmo.ru/~s311701/php/main.php'+'?'+data,true);
+        xhr.send();
+        xhr.onload = function () {
+            if (xhr.status != 200) {
+                alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+            } else {
+                console.log(xhr.responseText);
+                let result = JSON.parse(xhr.responseText);
+                if (result.validate) {
+                    newRow = '<tr>';
+                    newRow += '<td>' + result.xval + '</td>';
+                    newRow += '<td>' + result.yval + '</td>';
+                    newRow += '<td>' + result.rval + '</td>';
+                    newRow += '<td>' + result.curtime + '</td>';
+                    newRow += '<td>' + result.scripttime + '</td>';
+                    newRow += '<td>' + result.inarea + '</td>';
+                    $('#result-table').append(newRow);
+                }
+            }
+            ;
+        }
+        $('#main-form').trigger('reset');
+    }
+});
