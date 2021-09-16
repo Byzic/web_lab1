@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['data'])) {
+    $_SESSION['data'] = array();
+}
 
 //Validation
 
@@ -6,10 +10,10 @@ function validation($xVal,$yVal,$rVal){
     return validationX($xVal)&&validationR($rVal)&&validationY($yVal) ;
 }
 function validationX($xVal){
-    return isset($xVal);
+    return isset($xVal)&&is_numeric($xVal);
 }
 function validationR($rVal){
-    return isset($rVal);
+    return isset($rVal)&&is_numeric($rVal);
 }
 
 function validationY($yVal) {
@@ -46,26 +50,36 @@ function checkArea($xVal, $yVal, $rVal){
     return checkCircle($xVal, $yVal, $rVal) || checkTriangle($xVal, $yVal, $rVal) || checkRectangle($xVal, $yVal, $rVal);
 }
 
-
+$jsonData='{'."\"response\":[";
 $xVal = $_GET['x'];
 $yVal = $_GET['y'];
-$rVal = $_GET['r'];
-$timezoneOffset = $_GET['timezone'];
-$isValid=validation($xVal,$yVal,$rVal);
-$currentTime=date("H:i:s",time()-$timezoneOffset*60);
-$scriptTime=round(microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'], 7);
-$response=$isValid?'true':'false';
-$inArea=($isValid && checkArea($xVal, $yVal, $rVal))?'true':'false';
-$jsonData = '{' .
-    "\"validate\":$response," .
-    "\"xval\":$xVal," .
-    "\"yval\":$yVal," .
-    "\"rval\":$rVal," .
-    "\"curtime\":\"$currentTime\"," .
-    "\"scripttime\":\"$scriptTime\"," .
-    "\"inarea\":$inArea" .
-    "}";
+foreach ( $_GET['r'] as $rVal){
+    $timezoneOffset = $_GET['timezone'];
+    $isValid=validation($xVal,$yVal,$rVal);
+    $currentTime=date("H:i:s",time()-$timezoneOffset*60);
+    $scriptTime=round(microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'], 7);
+    $response=$isValid?'true':'false';
+    $inArea=($isValid && checkArea($xVal, $yVal, $rVal))?'true':'false';
+    if ($response){
+        $answer = array($response,$xVal, $yVal, $rVal, $currentTime, $scriptTime, $inArea);
+        array_push($_SESSION['data'], $answer);
+    }
+    $jsonData =$jsonData. '{' .
+        "\"validate\":$response," .
+        "\"xval\":$xVal," .
+        "\"yval\":$yVal," .
+        "\"rval\":$rVal," .
+        "\"curtime\":\"$currentTime\"," .
+        "\"scripttime\":\"$scriptTime\"," .
+        "\"inarea\":$inArea" .
+        "},";
+
+}
+$jsonData=substr($jsonData,0,-1);
+$jsonData .=']}';
 echo $jsonData;
+
+
 
 
 

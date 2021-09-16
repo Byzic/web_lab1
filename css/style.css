@@ -7,7 +7,9 @@ body{
     background: url(../img/pattern.png) repeat;
 
 }
-
+#group::after{
+    content: "❤";
+}
 td{
     padding: 20px;
     border: 5px solid #4F8A8B;
@@ -34,10 +36,9 @@ table {
 }
 #result-table tb{
     border: 1px solid #4F8A8B;
+    text-align: center;
 }
-#result-table tr {
-    height: 2em;
-}
+
 .headerimg{
     max-width: 200px;
     max-height: 200px;
@@ -93,6 +94,19 @@ button:hover{
     box-shadow: 0 0 5px 3px #FFCB74 ;
     background-color: #c3c9df;
     border:  2px solid #FFCB74;
+}
+#errors{
+    border:5px solid #d5daee;
+
+}
+#errors p{
+    text-align: center;
+    color:red;
+
+}
+.red {
+    border: 5px solid #e38585;
+    box-shadow: inset 0px 0 5px 3px #e38585 ;
 }
 
 

@@ -9,15 +9,14 @@
 <body>
 <table width=100%>
     <!-- Header -->
-
     <tr class="header" >
         <td  width="20%">
             <img src="/~s311701/img/котик.jpg" alt="Картинка куда-то исчезла :( " class="headerimg">
 
         </td>
         <td class="header__text" width="80%" >
-            <p>Бызова Валерия Сергеевна</p>
-            <p >группа 3212</p>
+            <p >Бызова Валерия Сергеевна</p>
+            <p id="group" >группа 3212</p>
             <p>Вариант: 12004</p>
         </td>
     </tr>
@@ -45,9 +44,9 @@
 
         </td>
     </tr>
-    <form id="main-form" action='php/main.php' >
+    <form id="main-form" action='/~s311701/php/main.php' >
         <tr class="choice">
-            <td  colspan=2>
+            <td id="x"  colspan=2>
                 <p class="choice__values">
                     <span class="value">Значение X</span>
                     <input  type="radio" class="x-radio" name="x" value="-5">-5
@@ -63,17 +62,18 @@
             </td>
         </tr>
         <tr class="choice">
-            <td colspan=2>
+            <td id="y" colspan=2>
                 <p class="choice__values">
                     <span class="value">Значение Y</span>
                     <input type="text" name="y" value="" id="y-textfield" >
-
-                    !значение должно быть в интервале (-5;5)
+                    значение должно быть в интервале (-5;5)
                 </p>
+
+
             </td>
         </tr >
         <tr class="choice">
-            <td colspan=2>
+            <td id="r" colspan=2>
                 <p class="choice__values">
                     <span class="value">Значение R</span>
                     <input class="r-checkbox" type="checkbox" name="r" value="1">1
@@ -86,8 +86,13 @@
             </td>
         </tr>
         <tr class="choice__button">
-            <td  colspan=2>
+            <td id="button_and_errors"  colspan=2>
                 <button type="submit">Отправить</button>
+            </td>
+        </tr>
+        <tr >
+            <td id="errors"  colspan=2>
+
             </td>
         </tr>
 
