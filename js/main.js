@@ -15,6 +15,9 @@ let inputX;
 
 $('button').slideUp( 'slow');
 $('button').slideDown( 'slow');
+start();
+
+
 
 function validateX() {
     if ($('.x-radio').is(':checked')) {
@@ -119,6 +122,37 @@ function removeError(elem){
 }
 
 
+function start(){console.log("старт отправился");
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://se.ifmo.ru/~s311701/php/main.php',true);
+    xhr.send();
+
+    xhr.onload = function () {
+        if (xhr.status != 200) {
+            alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+            alert(xhr.responseText);
+        } else {
+            console.log(xhr.responseText);
+            let result = JSON.parse(xhr.responseText);
+
+            for (let i in result.response){
+                if (result.response[i].validate) {
+                    let newRow = '<tr>';
+                    newRow += '<td>' + result.response[i].xval + '</td>';
+                    newRow += '<td>' + result.response[i].yval + '</td>';
+                    newRow += '<td>' + result.response[i].rval + '</td>';
+                    newRow += '<td>' + result.response[i].curtime + '</td>';
+                    newRow += '<td>' + result.response[i].scripttime + '</td>';
+                    newRow += '<td>' + result.response[i].inarea + '</td>';
+                    $('#result-table').append(newRow);
+                }
+            }
+
+        }
+    };
+}
+
+
 
 
 $('#main-form').on('submit', function(event) {
@@ -142,6 +176,7 @@ $('#main-form').on('submit', function(event) {
             } else {
                 console.log(xhr.responseText);
                 let result = JSON.parse(xhr.responseText);
+
                 for (let i in result.response){
                     if (result.response[i].validate) {
                         let newRow = '<tr>';

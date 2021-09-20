@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['data'])) {
-    $_SESSION['data'] = array();
+if (!isset($_SESSION['js'])) {
+    $_SESSION['js'] = array();
 }
 
 //Validation
@@ -50,34 +50,38 @@ function checkArea($xVal, $yVal, $rVal){
     return checkCircle($xVal, $yVal, $rVal) || checkTriangle($xVal, $yVal, $rVal) || checkRectangle($xVal, $yVal, $rVal);
 }
 
-$jsonData='{'."\"response\":[";
-$xVal = $_GET['x'];
-$yVal = $_GET['y'];
-foreach ( $_GET['r'] as $rVal){
-    $timezoneOffset = $_GET['timezone'];
-    $isValid=validation($xVal,$yVal,$rVal);
-    $currentTime=date("H:i:s",time()-$timezoneOffset*60);
-    $scriptTime=round(microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'], 7);
-    $response=$isValid?'true':'false';
-    $inArea=($isValid && checkArea($xVal, $yVal, $rVal))?'true':'false';
-    if ($response){
-        $answer = array($response,$xVal, $yVal, $rVal, $currentTime, $scriptTime, $inArea);
-        array_push($_SESSION['data'], $answer);
+if (!isset($_GET["x"])){
+    echo '{'."\"response\":[". implode(',', $_SESSION['js']) .']}';
+}else{
+    $jsonData="";
+    $resp='';
+    $xVal = $_GET['x'];
+    $yVal = $_GET['y'];
+    foreach ( $_GET['r'] as $rVal){
+        $timezoneOffset = $_GET['timezone'];
+        $isValid=validation($xVal,$yVal,$rVal);
+        $currentTime=date("H:i:s",time()-$timezoneOffset*60);
+        $scriptTime=round(microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'], 7);
+        $response=$isValid?'true':'false';
+        $inArea=($isValid && checkArea($xVal, $yVal, $rVal))?'true':'false';
+
+        $jsonData = '{' .
+            "\"validate\":$response," .
+            "\"xval\":$xVal," .
+            "\"yval\":$yVal," .
+            "\"rval\":$rVal," .
+            "\"curtime\":\"$currentTime\"," .
+            "\"scripttime\":\"$scriptTime\"," .
+            "\"inarea\":$inArea" .
+            "}";
+        array_push($_SESSION['js'],$jsonData);
+        $resp=$resp.$jsonData.',';
     }
-    $jsonData =$jsonData. '{' .
-        "\"validate\":$response," .
-        "\"xval\":$xVal," .
-        "\"yval\":$yVal," .
-        "\"rval\":$rVal," .
-        "\"curtime\":\"$currentTime\"," .
-        "\"scripttime\":\"$scriptTime\"," .
-        "\"inarea\":$inArea" .
-        "},";
+    $resp=substr($resp,0,-1);
+    echo '{'."\"response\":[". $resp .']}';
 
 }
-$jsonData=substr($jsonData,0,-1);
-$jsonData .=']}';
-echo $jsonData;
+//echo '{'."\"response\":[". implode(',', $_SESSION['js']) .']}';
 
 
 
